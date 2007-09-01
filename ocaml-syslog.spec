@@ -1,20 +1,19 @@
 %define name	ocaml-syslog
-%define distname syslog
+%define up_name syslog
 %define version	1.4
-%define release	%mkrel 1
-%define ocaml_sitelib %(if [ -x /usr/bin/ocamlc ]; then ocamlc -where;fi)/site-lib
+%define release	%mkrel 2
 
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-Summary:	Syslog routines for OCaml.
-Source:		http://homepage.mac.com/letaris/syslog-1.4.tar.gz
+Summary:	Syslog routines for OCaml
+Source:		http://homepage.mac.com/letaris/%{up_name}-%{version}.tar.gz
 URL:		http://homepage.mac.com/letaris
 License:	LGPL
 Group:		Development/Other
 BuildRequires:	ocaml
 BuildRequires:  findlib
-BuildRoot:	%{_tmppath}/%{distname}-%{version}
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Syslog routines for OCaml.
@@ -22,14 +21,14 @@ Syslog routines for OCaml.
 %package	devel
 Summary:	Development files for %{name}
 Group:		Development/Other
-Obsoletes:	%{name}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 This package contains the development files needed to build applications
 using %{name}.
 
 %prep
-%setup -q -n %{distname}-%{version}
+%setup -q -n %{up_name}-%{version}
 
 %build
 make 
@@ -47,8 +46,13 @@ rm -f %{buildroot}/%{ocaml_sitelib}/stublibs/*.owner
 %clean
 rm -rf %{buildroot}
 
-%files devel
+%files
 %defattr(-,root,root)
 %doc Changelog doc/syslog/html
-%{ocaml_sitelib}/syslog
+%dir %{ocaml_sitelib}/syslog
+%{ocaml_sitelib}/syslog/*.cmi
 
+%files devel
+%defattr(-,root,root)
+%{ocaml_sitelib}/syslog/*
+%exclude %{ocaml_sitelib}/syslog/*.cmi
