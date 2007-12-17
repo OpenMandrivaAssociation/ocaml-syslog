@@ -13,7 +13,6 @@ License:	LGPL
 Group:		Development/Other
 BuildRequires:	ocaml
 BuildRequires:  findlib
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Syslog routines for OCaml.
