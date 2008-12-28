@@ -1,7 +1,7 @@
 %define name	ocaml-syslog
 %define up_name syslog
 %define version	1.4
-%define release	%mkrel 3
+%define release	%mkrel 4
 
 Name:		%{name}
 Version:	%{version}
@@ -12,7 +12,7 @@ URL:		http://homepage.mac.com/letaris
 License:	LGPL
 Group:		Development/Other
 BuildRequires:	ocaml
-BuildRequires:  findlib
+BuildRequires:  ocaml-findlib
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
@@ -37,11 +37,11 @@ make htdoc
 
 %install
 rm -rf %{buildroot}
-install -d -m 755 %{buildroot}/%{ocaml_sitelib}
+install -d -m 755 %{buildroot}/%{_libdir}/ocaml
 install -d -m 755 %{buildroot}/%_defaultdocdir/%{name}/html
-ocamlfind install syslog META -destdir %{buildroot}/%{ocaml_sitelib} \
+ocamlfind install syslog META -destdir %{buildroot}/%{_libdir}/ocaml \
   syslog.cmi syslog.mli syslog.cma syslog.cmxa syslog.a
-rm -f %{buildroot}/%{ocaml_sitelib}/stublibs/*.owner
+rm -f %{buildroot}/%{_libdir}/ocaml/stublibs/*.owner
 
 %clean
 rm -rf %{buildroot}
@@ -49,10 +49,13 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %doc Changelog doc/syslog/html
-%dir %{ocaml_sitelib}/syslog
-%{ocaml_sitelib}/syslog/*.cmi
+%dir %{_libdir}/ocaml/syslog
+%{_libdir}/ocaml/syslog/*.cmi
+%{_libdir}/ocaml/syslog/*.cma
+%{_libdir}/ocaml/syslog/META
 
 %files devel
 %defattr(-,root,root)
-%{ocaml_sitelib}/syslog/*
-%exclude %{ocaml_sitelib}/syslog/*.cmi
+%{_libdir}/ocaml/syslog/*.a
+%{_libdir}/ocaml/syslog/*.cmxa
+%{_libdir}/ocaml/syslog/*.mli
