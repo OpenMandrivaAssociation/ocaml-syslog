@@ -4,7 +4,7 @@
 Summary:	Syslog routines for OCaml
 Name:		ocaml-syslog
 Version:	1.4
-Release:	6
+Release:	7
 License:	LGPLv2.1+
 Group:		Development/Other
 Url:		http://homepage.mac.com/letaris
