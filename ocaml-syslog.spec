@@ -7,7 +7,7 @@ Version:	1.4
 Release:	7
 License:	LGPLv2.1+
 Group:		Development/Other
-Url:		http://homepage.mac.com/letaris
+Url:		https://homepage.mac.com/letaris
 Source0:	http://homepage.mac.com/letaris/syslog-%{version}.tar.gz
 BuildRequires:	ocaml
 BuildRequires:	ocaml-findlib
