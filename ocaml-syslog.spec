@@ -9,6 +9,7 @@ License:	LGPLv2.1+
 Group:		Development/Other
 Url:		https://homepage.mac.com/letaris
 Source0:	http://homepage.mac.com/letaris/syslog-%{version}.tar.gz
+BuildRequires:	make
 BuildRequires:	ocaml
 BuildRequires:	ocaml-findlib
 
